@@ -82,23 +82,24 @@ function sliderRight() {
 
 const filterItems = document.querySelectorAll(".filteCat[data]");
 
-for (let i = 0; i < filterItems.length; i++) {
-	filterItems[i].onclick = filterCat;
-}
+filterItems.forEach(function (elem) {
+	elem.addEventListener("click", filterCat);
+});
 
 function filterCat() {
 	const catChoice = event.target.getAttribute("data");
 	const projects = document.querySelectorAll(".projects__card");
 
-	for (let i = 0; i < projects.length; i++) {
-		projects[i].style.display = "none";
-		if (projects[i].getAttribute("data") == catChoice) {
-			projects[i].style.display = "flex";
+	projects.forEach(function (elem) {
+		elem.style.display = "none";
+		if (elem.getAttribute("data") == catChoice) {
+			elem.style.display = "flex";
 		}
 		if (catChoice == "all") {
-			projects[i].style.display = "flex";
+			elem.style.display = "flex";
 		}
-	}
+	});
+
 }
 
 /*/filter================================================*/
@@ -136,45 +137,56 @@ let countStartStatisticCount = 0,
 let scrollUpPage = document.querySelector(".scrollup");
 
 window.onscroll = function () {
-	/*scrollup================================================*/
+	/*counterStatistic================================================*/
 	if (countStartStatisticCount == 0 && pageYOffset > 2450) {
 		countStartStatisticCount = 1;
 		let count1 = setInterval(function counter1() {
-			counterStatisticClients.innerHTML = countClients++;
-			if (countClients >= counterStatisticClients.getAttribute("data_count")) {
+			if (countClients === parseInt(counterStatisticClients.getAttribute("data_count"))) {
 				clearInterval(count1);
 			}
+			counterStatisticClients.innerHTML = countClients++;
 		}, 1);
 
 		let count2 = setInterval(function counter2() {
-			counterStatisticCoffee.innerHTML = countCoffee++;
-			if (countCoffee >= counterStatisticCoffee.getAttribute("data_count")) {
+			if (countCoffee === parseInt(counterStatisticCoffee.getAttribute("data_count"))) {
 				clearInterval(count2);
 			}
+			counterStatisticCoffee.innerHTML = countCoffee++;
 		}, 50);
 
 		let count3 = setInterval(function counter3() {
-			counterStatisticPosts.innerHTML = countPosts++;
-			if (countPosts >= counterStatisticPosts.getAttribute("data_count")) {
+			if (countPosts === parseInt(counterStatisticPosts.getAttribute("data_count"))) {
 				clearInterval(count3);
 			}
+			counterStatisticPosts.innerHTML = countPosts++;
 		}, 1);
 
 		let count4 = setInterval(function counter4() {
-			counterStatisticLikes.innerHTML = countLikes++;
-			if (countLikes >= counterStatisticLikes.getAttribute("data_count")) {
+			if (countLikes === parseInt(counterStatisticLikes.getAttribute("data_count"))) {
 				clearInterval(count4);
 			}
+			counterStatisticLikes.innerHTML = countLikes++;
 		}, 10);
 
 		let count5 = setInterval(function counter5() {
-			counterStatisticLaunched.innerHTML = countLaunched++;
-			if (countLaunched >= counterStatisticLaunched.getAttribute("data_count")) {
+			if (countLaunched === parseInt(counterStatisticLaunched.getAttribute("data_count"))) {
 				clearInterval(count5);
 			}
+			counterStatisticLaunched.innerHTML = countLaunched++;
 		}, 10);
 	}
 
+	/*/counterStatistic================================================*/
+
+	/*/scrollup================================================*/
+	if (pageYOffset > 1000) {
+		scrollUpPage.style.display = "flex";
+		scrollUpPage.onclick = function () {
+			window.scroll(0, 0);
+		}
+	} else {
+		scrollUpPage.style.display = "none";
+	}
 	/*/scrollup================================================*/
 
 
@@ -185,11 +197,11 @@ window.onscroll = function () {
 	let angularStatisticBlock = document.querySelector(".angular__statistic_block");
 
 	if (pageYOffset > 3700 && countStartStatisticFrameworks == 0) {
+		countStartStatisticFrameworks = 1;
 		let countJquery = setInterval(function counterJquery() {
 			jqueryStatisticBlock.style.height = `${countJqueryHeight++}px`;
 			jqueryStatisticBlock.innerHTML = `${countJqueryHeight++}`;
-			countStartStatisticFrameworks = 1;
-			if (countJqueryHeight >= jqueryStatisticBlock.getAttribute("data_height")) {
+			if (countJqueryHeight === parseInt(jqueryStatisticBlock.getAttribute("data_height"))) {
 				clearInterval(countJquery);
 			}
 		}, 50);
@@ -198,7 +210,7 @@ window.onscroll = function () {
 		let countVue = setInterval(function counterJquery() {
 			vueStatisticBlock.style.height = `${countVueHeight++}px`;
 			vueStatisticBlock.innerHTML = `${countVueHeight++}`;
-			if (countVueHeight >= vueStatisticBlock.getAttribute("data_height")) {
+			if (countVueHeight === parseInt(vueStatisticBlock.getAttribute("data_height"))) {
 				clearInterval(countVue);
 			}
 		}, 50);
@@ -207,17 +219,19 @@ window.onscroll = function () {
 		let countReact = setInterval(function counterJquery() {
 			reactStatisticBlock.style.height = `${countReactHeight++}px`;
 			reactStatisticBlock.innerHTML = `${countReactHeight++}`;
-			if (countReactHeight >= reactStatisticBlock.getAttribute("data_height")) {
+			if (countReactHeight === parseInt(reactStatisticBlock.getAttribute("data_height"))) {
 				clearInterval(countReact);
 			}
+
 		}, 50);
 
 		let countAngular = setInterval(function counterJquery() {
 			angularStatisticBlock.style.height = `${countAngularHeight++}px`;
 			angularStatisticBlock.innerHTML = `${countAngularHeight++}`;
-			if (countAngularHeight >= angularStatisticBlock.getAttribute("data_height")) {
+			if (countAngularHeight === parseInt(angularStatisticBlock.getAttribute("data_height"))) {
 				clearInterval(countAngular);
 			}
+
 		}, 50);
 	}
 

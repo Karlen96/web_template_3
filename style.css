@@ -1469,6 +1469,19 @@ ul li {
 		flex  : 0 1 100%;
 		margin: 10px;
 	}
+
+	.header__content p {
+		font-size: 16px;
+	}
+
+	.header__content h1 {
+		font-size: 20px;
+	}
+
+	.header__content h5 {
+		font-size  : 12px;
+		font-weight: 500;
+	}
 }
 
 /*/medid*/
