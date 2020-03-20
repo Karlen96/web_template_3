@@ -1,4 +1,3 @@
-
 /*responsive menu================================================*/
 const menu__item = document.querySelector(".menu__item");
 const header = document.querySelector(".header");
@@ -241,8 +240,7 @@ search__item.onmouseover = function () {
 search__input.onkeyup = function () {
 	searchValue = search__input.value;
 	for (let i = 0; i < filterItems.length; i++) {
-		if (productsCardItems[i].innerHTML == searchValue) {
-		} else {
+		if (productsCardItems[i].innerHTML == searchValue) {} else {
 			console.log("such a query failed");
 		}
 		if (searchValue.length == 0) {
@@ -271,40 +269,28 @@ read__more_btn.onclick = function readMore() {
 }
 /*/recentpostscardreadmore================================================*/
 /*reviewsstars================================================*/
-let reviewsCardStars = document.querySelectorAll(".reviews__card_stars span");
 
-for (let i = 0; i < reviewsCardStars.length; i++) {
+let reviewsCards = document.querySelectorAll(".reviews__card_stars");
+let stars = [];
 
-	reviewsCardStars[i].onclick = function (event) {
-		let starassessment = i;
-		if (starassessment < 5) {
-			for (let i = 0; i < 5; i++) {
-				reviewsCardStars[i].innerHTML = "&#9734;";
+reviewsCards.forEach(function (elem) {
+	stars.push(elem.children);
+});
+
+
+stars.forEach(function (review) {
+	for (let i = 0; i < review.length; i++) {
+		review[i].onclick = function () {
+			let starassessment = i;
+			for (let j = 0; j < review.length; j++) {
+				review[j].innerHTML = "&#9734;";
 			}
-			for (let i = 0; i <= starassessment; i++) {
-				reviewsCardStars[i].innerHTML = "&#9733;";
-			}
-		}
-		if (starassessment < 10) {
-			for (let i = 5; i < 10; i++) {
-				reviewsCardStars[i].innerHTML = "&#9734;";
-			}
-			for (let i = 5; i <= starassessment; i++) {
-				reviewsCardStars[i].innerHTML = "&#9733;";
-			}
-		}
-		if (starassessment < 15) {
-			for (let i = 10; i < 15; i++) {
-				reviewsCardStars[i].innerHTML = "&#9734;";
-			}
-			for (let i = 10; i <= starassessment; i++) {
-				reviewsCardStars[i].innerHTML = "&#9733;";
+			for (let k = 0; k <= starassessment; k++) {
+				review[k].innerHTML = "&#9733;";
 			}
 		}
 	}
-}
+});
+
 
 /*/reviewsstars================================================*/
-
-
-
