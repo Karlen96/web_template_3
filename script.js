@@ -196,44 +196,44 @@ window.onscroll = function () {
 	let reactStatisticBlock = document.querySelector(".react__statistic_block");
 	let angularStatisticBlock = document.querySelector(".angular__statistic_block");
 
-	if (pageYOffset > 3700 && countStartStatisticFrameworks == 0) {
-		countStartStatisticFrameworks = 1;
-		let countJquery = setInterval(function counterJquery() {
-			jqueryStatisticBlock.style.height = `${countJqueryHeight++}px`;
-			jqueryStatisticBlock.innerHTML = `${countJqueryHeight++}`;
-			if (countJqueryHeight === parseInt(jqueryStatisticBlock.getAttribute("data_height"))) {
-				clearInterval(countJquery);
-			}
-		}, 50);
+	//if (pageYOffset > 3700 && countStartStatisticFrameworks == 0) {
+	//	countStartStatisticFrameworks = 1;
+	//let countJquery = setInterval(function counterJquery() {
+	//	jqueryStatisticBlock.style.height = `${countJqueryHeight++}px`;
+	//	jqueryStatisticBlock.innerHTML = `${countJqueryHeight++}`;
+	//	if (countJqueryHeight === parseInt(jqueryStatisticBlock.getAttribute("data_height"))) {
+	//		clearInterval(countJquery);
+	//	}
+	//}, 50);
 
 
-		let countVue = setInterval(function counterJquery() {
-			vueStatisticBlock.style.height = `${countVueHeight++}px`;
-			vueStatisticBlock.innerHTML = `${countVueHeight++}`;
-			if (countVueHeight === parseInt(vueStatisticBlock.getAttribute("data_height"))) {
-				clearInterval(countVue);
-			}
-		}, 50);
+	//let countVue = setInterval(function counterJquery() {
+	//	vueStatisticBlock.style.height = `${countVueHeight++}px`;
+	//	vueStatisticBlock.innerHTML = `${countVueHeight++}`;
+	//	if (countVueHeight === parseInt(vueStatisticBlock.getAttribute("data_height"))) {
+	//		clearInterval(countVue);
+	//	}
+	//}, 50);
 
 
-		let countReact = setInterval(function counterJquery() {
-			reactStatisticBlock.style.height = `${countReactHeight++}px`;
-			reactStatisticBlock.innerHTML = `${countReactHeight++}`;
-			if (countReactHeight === parseInt(reactStatisticBlock.getAttribute("data_height"))) {
-				clearInterval(countReact);
-			}
+	//let countReact = setInterval(function counterJquery() {
+	//	reactStatisticBlock.style.height = `${countReactHeight++}px`;
+	//	reactStatisticBlock.innerHTML = `${countReactHeight++}`;
+	//	if (countReactHeight === parseInt(reactStatisticBlock.getAttribute("data_height"))) {
+	//		clearInterval(countReact);
+	//	}
 
-		}, 50);
+	//}, 50);
 
-		let countAngular = setInterval(function counterJquery() {
-			angularStatisticBlock.style.height = `${countAngularHeight++}px`;
-			angularStatisticBlock.innerHTML = `${countAngularHeight++}`;
-			if (countAngularHeight === parseInt(angularStatisticBlock.getAttribute("data_height"))) {
-				clearInterval(countAngular);
-			}
+	//let countAngular = setInterval(function counterJquery() {
+	//	angularStatisticBlock.style.height = `${countAngularHeight++}px`;
+	//	angularStatisticBlock.innerHTML = `${countAngularHeight++}`;
+	//	if (countAngularHeight === parseInt(angularStatisticBlock.getAttribute("data_height"))) {
+	//		clearInterval(countAngular);
+	//	}
 
-		}, 50);
-	}
+	//}, 50);
+	//}
 
 	/*/statistic__frameworks================================================*/
 }
@@ -247,14 +247,17 @@ let search__input = document.querySelector(".search__input");
 let searchValue = "";
 const productsCardItems = document.querySelectorAll(".projects__card_bottom *");
 
-search__item.onmouseover = function () {
+search__item.addEventListener("mouseover", () => {
 	search__input.style.right = 35 + "px";
-}
+});
 
-search__input.onkeyup = function () {
+search__input.addEventListener("input", () => {
 	searchValue = search__input.value;
+
 	for (let i = 0; i < filterItems.length; i++) {
-		if (productsCardItems[i].innerHTML == searchValue) {} else {
+		if (productsCardItems[i].textContent == searchValue) {
+			productsCardItems[i].style.color = "red";
+		} else {
 			console.log("such a query failed");
 		}
 		if (searchValue.length == 0) {
@@ -262,7 +265,8 @@ search__input.onkeyup = function () {
 		}
 	}
 
-}
+});
+
 /*/searchlive================================================*/
 /*recentpostscardreadmore================================================*/
 let recentpostscards = document.querySelectorAll(".recentposts__card");
@@ -273,14 +277,14 @@ let recentpostShowCard = 3;
 for (let i = recentpostShowCard; i < recentpostscards.length; i++) {
 	recentpostscards[i].style.display = "none";
 }
-read__more_btn.onclick = function readMore() {
+read__more_btn.addEventListener("click", () => {
 	recentpostShowCard += 3;
 	if (recentpostShowCard <= recentpostscards.length) {
 		for (let i = 0; i < recentpostShowCard; i++) {
 			recentpostscards[i].style.display = "flex";
 		}
 	}
-}
+});
 /*/recentpostscardreadmore================================================*/
 /*reviewsstars================================================*/
 
