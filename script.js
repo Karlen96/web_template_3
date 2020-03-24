@@ -76,6 +76,8 @@ function sliderRight() {
 	slider__item[slider__active].classList.add("active__slide");
 }
 
+setInterval(sliderRight, 3000);
+
 /*/slider================================================*/
 
 /*filter================================================*/
