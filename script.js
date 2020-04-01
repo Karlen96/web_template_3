@@ -44,18 +44,11 @@ function slider() {
 	slider__item[slider__active].classList.add("active__slide");
 }
 
-const arrow__left = document.querySelector(".arrow__left");
-const arrow__right = document.querySelector(".arrow__right");
-
-arrow__left.onclick = sliderLeft;
-arrow__right.onclick = sliderRight;
+document.querySelector(".arrow__left").addEventListener("click", sliderLeft);
+document.querySelector(".arrow__right").addEventListener("click", sliderRight);
 
 function sliderLeft() {
-	if (slider__active > 0) {
-		slider__active--;
-	} else {
-		slider__active = arrSlides.length - 1;
-	}
+	(slider__active > 0) ? slider__active-- : slider__active = arrSlides.length - 1;
 	header.style.backgroundImage = `url(image/${arrSlides[slider__active]})`;
 	for (let i = 0; i < slider__item.length; i++) {
 		slider__item[i].classList.remove("active__slide");
@@ -64,11 +57,7 @@ function sliderLeft() {
 }
 
 function sliderRight() {
-	if (slider__active == arrSlides.length - 1) {
-		slider__active = 0;
-	} else {
-		slider__active++;
-	}
+	(slider__active == arrSlides.length - 1) ? slider__active = 0: slider__active++;
 	header.style.backgroundImage = `url(image/${arrSlides[slider__active]})`;
 	for (let i = 0; i < slider__item.length; i++) {
 		slider__item[i].classList.remove("active__slide");
@@ -76,7 +65,7 @@ function sliderRight() {
 	slider__item[slider__active].classList.add("active__slide");
 }
 
-setInterval(sliderRight, 3000);
+setInterval(sliderRight, 5000);
 
 /*/slider================================================*/
 
@@ -130,11 +119,7 @@ let countStartStatisticCount = 0,
 	countCoffee = 0,
 	countPosts = 0,
 	countLikes = 0,
-	countLaunched = 0,
-	countJqueryHeight = 0,
-	countVueHeight = 0,
-	countReactHeight = 0,
-	countAngularHeight = 0;
+	countLaunched = 0;
 
 let scrollUpPage = document.querySelector(".scrollup");
 
@@ -191,53 +176,6 @@ window.onscroll = function () {
 	}
 	/*/scrollup================================================*/
 
-
-	/*statistic__frameworks================================================*/
-	let jqueryStatisticBlock = document.querySelector(".jquery__statistic_block");
-	let vueStatisticBlock = document.querySelector(".vue__statistic_block");
-	let reactStatisticBlock = document.querySelector(".react__statistic_block");
-	let angularStatisticBlock = document.querySelector(".angular__statistic_block");
-
-	//if (pageYOffset > 3700 && countStartStatisticFrameworks == 0) {
-	//	countStartStatisticFrameworks = 1;
-	//let countJquery = setInterval(function counterJquery() {
-	//	jqueryStatisticBlock.style.height = `${countJqueryHeight++}px`;
-	//	jqueryStatisticBlock.innerHTML = `${countJqueryHeight++}`;
-	//	if (countJqueryHeight === parseInt(jqueryStatisticBlock.getAttribute("data_height"))) {
-	//		clearInterval(countJquery);
-	//	}
-	//}, 50);
-
-
-	//let countVue = setInterval(function counterJquery() {
-	//	vueStatisticBlock.style.height = `${countVueHeight++}px`;
-	//	vueStatisticBlock.innerHTML = `${countVueHeight++}`;
-	//	if (countVueHeight === parseInt(vueStatisticBlock.getAttribute("data_height"))) {
-	//		clearInterval(countVue);
-	//	}
-	//}, 50);
-
-
-	//let countReact = setInterval(function counterJquery() {
-	//	reactStatisticBlock.style.height = `${countReactHeight++}px`;
-	//	reactStatisticBlock.innerHTML = `${countReactHeight++}`;
-	//	if (countReactHeight === parseInt(reactStatisticBlock.getAttribute("data_height"))) {
-	//		clearInterval(countReact);
-	//	}
-
-	//}, 50);
-
-	//let countAngular = setInterval(function counterJquery() {
-	//	angularStatisticBlock.style.height = `${countAngularHeight++}px`;
-	//	angularStatisticBlock.innerHTML = `${countAngularHeight++}`;
-	//	if (countAngularHeight === parseInt(angularStatisticBlock.getAttribute("data_height"))) {
-	//		clearInterval(countAngular);
-	//	}
-
-	//}, 50);
-	//}
-
-	/*/statistic__frameworks================================================*/
 }
 
 /*/counter================================================*/
@@ -271,7 +209,7 @@ search__input.addEventListener("input", () => {
 
 /*/searchlive================================================*/
 /*recentpostscardreadmore================================================*/
-let recentpostscards = document.querySelectorAll(".recentposts__card");
+const recentpostscards = document.querySelectorAll(".recentposts__card");
 const read__more_btn = document.querySelector(".read__more_btn");
 
 let recentpostShowCard = 3;
@@ -290,27 +228,25 @@ read__more_btn.addEventListener("click", () => {
 /*/recentpostscardreadmore================================================*/
 /*reviewsstars================================================*/
 
-let reviewsCards = document.querySelectorAll(".reviews__card_stars");
-let stars = [];
+const reviewsCard = document.querySelectorAll(".reviews__card_stars");
+const Stars = [];
 
-reviewsCards.forEach(function (elem) {
-	stars.push(elem.children);
+reviewsCard.forEach((elem) => {
+	Stars.push(elem.children);
 });
 
-
-stars.forEach(function (review) {
-	for (let i = 0; i < review.length; i++) {
-		review[i].onclick = function () {
-			let starassessment = i;
-			for (let j = 0; j < review.length; j++) {
-				review[j].innerHTML = "&#9734;";
+for (let i = 0; i < Stars.length; i++) {
+	for (let j = 0; j < Stars[i].length; j++) {
+		Stars[i][j].onclick = function () {
+			for (let l = 0; l < Stars[i].length; l++) {
+				Stars[i][l].innerHTML = "&#9734;";
 			}
-			for (let k = 0; k <= starassessment; k++) {
-				review[k].innerHTML = "&#9733;";
+			for (let k = 0; k <= j; k++) {
+				Stars[i][k].innerHTML = "&#9733;";
 			}
 		}
 	}
-});
+}
 
 
 /*/reviewsstars================================================*/
