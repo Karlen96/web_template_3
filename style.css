@@ -25,7 +25,7 @@ li {
 	-ms-flex-pack     : center;
 	justify-content   : center;
 	width             : 100%;
-	background-image  : url("image/bgimg1.png");
+	background-image  : url("image/bgimg1.webp");
 	background-size   : cover;
 	background-repeat : no-repeat;
 	-webkit-transition: background-image 2s;

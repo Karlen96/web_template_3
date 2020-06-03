@@ -26,12 +26,12 @@ for (let i = 0; i < slider__item.length; i++) {
 }
 
 const arrSlides = [
-	"bgimg1.png",
-	"bgimg2.png",
-	"bgimg3.png",
-	"bgimg4.png",
-	"bgimg5.png",
-	"bgimg6.png"
+	"bgimg1.webp",
+	"bgimg2.webp",
+	"bgimg3.webp",
+	"bgimg4.webp",
+	"bgimg5.webp",
+	"bgimg6.webp"
 ];
 
 function slider() {
@@ -46,6 +46,7 @@ function slider() {
 
 document.querySelector(".arrow__left").addEventListener("click", sliderLeft);
 document.querySelector(".arrow__right").addEventListener("click", sliderRight);
+
 
 function sliderLeft() {
 	(slider__active > 0) ? slider__active-- : slider__active = arrSlides.length - 1;
@@ -65,7 +66,7 @@ function sliderRight() {
 	slider__item[slider__active].classList.add("active__slide");
 }
 
-setInterval(sliderRight, 5000);
+let slideSwipe = setInterval(sliderRight, 3000);
 
 /*/slider================================================*/
 
